@@ -6,5 +6,5 @@ function setup() {
 function draw() {
   // put drawing code here
 
-  rect(mouseY, mouseX, 10, 10) ;
+  rect(mouseY, mouseX, 5, 5) ;
 }
