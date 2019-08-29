@@ -136,7 +136,14 @@ fill(255)
   ellipse(315, 80, 50, 50)
   ellipse(385, 80, 50, 50)
   ellipse(350, 80, 75, 75)
+  ellipse(mouseX + 400, mouseY, 50, 50)
+  ellipse(mouseX - 400, mouseY, 50, 50)
+  ellipse(mouseX, mouseY, 75, 75)
+  rect(mouseX - 400, mouseY - 13, 800, 25)
+  rect(mouseX - 5, mouseY - 100, 10, 100)
 
   fill(200)
   rect(0, 850, 1000, 50)
+
+text("x = " + mouseX + ", y = " + mouseY, 40, 40)
 }
