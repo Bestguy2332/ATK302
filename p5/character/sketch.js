@@ -37,6 +37,14 @@ function draw() {
 
 background(0)
 
+// gun
+fill(255, 0, 0)
+  rect(mouseX + 15, by, 5, 10)
+  rect(mouseX - 20, by, 5, 10)
+  by=by+vel;
+  if (by < -10){
+    vel=0;
+  }
   // put drawing code here
   fill (255,255,255)
 rect(mouseX - 5, mouseY - 50, 10, 100)
@@ -71,14 +79,7 @@ ellipse(1100, h, 75, 75)
 ellipse(1135, h, 50, 50)
 ellipse(1065, h, 50, 50)
 
-// gun
-fill(255, 0, 0)
-  rect(mouseX + 15, by, 5, 10)
-  rect(mouseX - 20, by, 5, 10)
-  by=by+vel;
-  if (by < -10){
-    vel=0;
-  }
+
 
 if (mouseIsPressed) {
 
