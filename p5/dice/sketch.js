@@ -4,14 +4,17 @@ var roll = 0;
 var x = 0;
 var result = 1000;
 var timer2 = 0;
+let value = 0;
+let threshold = 30;
 function setup() {
+  setShakeThreshold(threshold);
   createCanvas (windowWidth, windowHeight);
   // put setup code here
 }
 
 function draw() {
   ellipseMode(CENTER);
-
+setShakeThreshold(threshold);
   // put drawing code here
   switch(myState) {
     case 0:
