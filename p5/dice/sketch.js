@@ -89,10 +89,8 @@ setShakeThreshold(threshold);
   result = 10000;
   break;
 
-  case 6:
-  result = 1;
 
-  break;
+
 }
 timer = timer + 1;
 timer2 = timer2 + 1;
