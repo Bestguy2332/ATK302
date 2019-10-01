@@ -19,47 +19,47 @@ setShakeThreshold(threshold);
   switch(myState) {
     case 0:
     background(0);
-    ellipse(windowWidth/2, windowHeight/2, 100, 100);
+    ellipse(windowWidth/2, windowHeight/2, 50, 50);
     break;
 
     case 1:
     background(0);
-    ellipse(windowWidth/3, windowHeight/3, 100, 100);
-    ellipse(windowWidth*2/3, windowHeight*2/3, 100, 100);
+    ellipse(windowWidth/3, windowHeight/3, 50, 50);
+    ellipse(windowWidth*2/3, windowHeight*2/3, 50, 50);
     break;
 
     case 2:
     background(0);
-    ellipse(windowWidth/3, windowHeight/3, 100, 100);
-    ellipse(windowWidth*2/3, windowHeight*2/3, 100, 100);
-    ellipse(windowWidth/2, windowHeight/2, 100, 100);
+    ellipse(windowWidth/3, windowHeight/3, 50, 50);
+    ellipse(windowWidth*2/3, windowHeight*2/3, 50, 50);
+    ellipse(windowWidth/2, windowHeight/2, 50, 50);
     break;
 
     case 3:
     background(0);
-    ellipse(windowWidth*2/3, windowHeight/3, 100, 100);
-    ellipse(windowWidth/3, windowHeight*2/3, 100, 100);
-    ellipse(windowWidth/3, windowHeight/3, 100, 100);
-    ellipse(windowWidth*2/3, windowHeight*2/3, 100, 100);
+    ellipse(windowWidth*2/3, windowHeight/3, 50, 50);
+    ellipse(windowWidth/3, windowHeight*2/3, 50, 50);
+    ellipse(windowWidth/3, windowHeight/3, 50, 50);
+    ellipse(windowWidth*2/3, windowHeight*2/3, 50, 50);
     break;
 
     case 4:
     background(0);
-    ellipse(windowWidth*2/3, windowHeight/3, 100, 100);
-    ellipse(windowWidth/3, windowHeight*2/3, 100, 100);
-    ellipse(windowWidth/3, windowHeight/3, 100, 100);
-    ellipse(windowWidth*2/3, windowHeight*2/3, 100, 100);
-    ellipse(windowWidth/2, windowHeight/2, 100, 100);
+    ellipse(windowWidth*2/3, windowHeight/3, 50, 50);
+    ellipse(windowWidth/3, windowHeight*2/3, 50, 50);
+    ellipse(windowWidth/3, windowHeight/3, 50, 50);
+    ellipse(windowWidth*2/3, windowHeight*2/3, 50, 50);
+    ellipse(windowWidth/2, windowHeight/2, 50, 50);
     break;
 
     case 5:
     background(0);
-    ellipse(windowWidth*2/3, windowHeight/3, 100, 100);
-    ellipse(windowWidth/3, windowHeight*2/3, 100, 100);
-    ellipse(windowWidth/3, windowHeight/3, 100, 100);
-    ellipse(windowWidth*2/3, windowHeight*2/3, 100, 100);
-    ellipse(windowWidth/3, windowHeight/2, 100, 100);
-    ellipse(windowWidth*2/3, windowHeight/2, 100, 100);
+    ellipse(windowWidth*2/3, windowHeight/3, 50, 50);
+    ellipse(windowWidth/3, windowHeight*2/3, 50, 50);
+    ellipse(windowWidth/3, windowHeight/3, 50, 50);
+    ellipse(windowWidth*2/3, windowHeight*2/3, 50, 50);
+    ellipse(windowWidth/3, windowHeight/2, 50, 50);
+    ellipse(windowWidth*2/3, windowHeight/2, 50, 50);
     break;
   }
 
@@ -100,7 +100,7 @@ if (timer > result){
   myState = myState + 1;
 }
 
-if (timer2 > 100) {
+if (timer2 > 50) {
   roll = roll + 1;
   timer2 = 0;
 }
