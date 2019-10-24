@@ -10,6 +10,8 @@ var bot;
 var topw;
 var leftp;
 var rightp;
+var score;
+var win;
 
 function setup() {
   createCanvas (windowWidth - 5, windowHeight - 5);
@@ -22,6 +24,8 @@ bot = loadSound('assets/bottomwall.wav');
 topw = loadSound('assets/topwall.wav');
 leftp = loadSound('assets/leftpaddle.wav');
 rightp = loadSound('assets/rightpaddle.wav');
+score = loadSound('assets/score.wav');
+win = loadSound('assets/win.wav');
 //  Montserrat_Subrayada/MontserratSubrayada-Bold.ttf
 
   rectMode(CENTER);
@@ -62,20 +66,29 @@ switch (myState) {
   background(0);
   image(trophy, width/2, height/2);
   text('Player 1 wins', width/2, height/2);
+
   break;
   case 4:
   background(0)
   image(trophy , width/2, height/2);
   text('Player 2 wins', width/2, height/2);
+
+
   break;
 
 }
 
   if (score1 >= 7){
   myState = 3;
+  win.play();
+  score1=0;
+  score2=0;
 }
 if (score2 >= 7){
 myState = 4;
+win.play();
+score1=0;
+score2=0;
 }
 
 }
@@ -121,6 +134,7 @@ function Ball() {
       score2 = score2 + 1;
       this.pos.x = width/2;
       ballReset();
+      score.play();
 
       this.vel.x = -this.vel.x;
 
@@ -130,6 +144,7 @@ function Ball() {
       this.pos.x = width/2;
       this.vel.x = -this.vel.x;
       ballReset();
+      score.play();
 
 
     }
