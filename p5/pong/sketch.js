@@ -12,6 +12,14 @@ var leftp;
 var rightp;
 var score;
 var win;
+var vel1;
+var vel2;
+var vel3;
+var vel4;
+var vel5;
+var vel6;
+var vel7;
+var vel8;
 
 function setup() {
   createCanvas (windowWidth - 5, windowHeight - 5);
@@ -96,14 +104,57 @@ score2=0;
 
 function checkForKeys() {
 
-  if (keyIsDown(UP_ARROW)) paddle1Pos.y = paddle1Pos.y - 5;
-  if (keyIsDown(DOWN_ARROW)) paddle1Pos.y = paddle1Pos.y + 5;
-  if (keyIsDown(LEFT_ARROW)) paddle1Pos.x = paddle1Pos.x - 5;
-  if (keyIsDown(RIGHT_ARROW)) paddle1Pos.x = paddle1Pos.x + 5;
-  if (keyIsDown(87)) paddle2Pos.y = paddle2Pos.y - 5;
-  if (keyIsDown(83)) paddle2Pos.y = paddle2Pos.y + 5;
-  if (keyIsDown(65)) paddle2Pos.x = paddle2Pos.x - 5;
-  if (keyIsDown(68)) paddle2Pos.x = paddle2Pos.x + 5;
+  if (keyIsDown(UP_ARROW)) paddle1Pos.y = paddle1Pos.y - vel1;
+  if (paddle1Pos.y <= 0) {
+    vel1 = 0;
+  } else{
+    vel1 = 5;
+  }
+
+  if (keyIsDown(DOWN_ARROW)) paddle1Pos.y = paddle1Pos.y + vel2;
+  if (paddle1Pos.y >= height) {
+    vel2 = 0;
+  } else{
+    vel2 = 5;
+  }
+
+  if (keyIsDown(LEFT_ARROW)) paddle1Pos.x = paddle1Pos.x - vel3;
+  if (paddle1Pos.x <= 0) {
+    vel3 = 0;
+  } else{
+    vel3 = 5;
+  }
+
+  if (keyIsDown(RIGHT_ARROW)) paddle1Pos.x = paddle1Pos.x + vel4;
+  if (paddle1Pos.x >= width) {
+    vel4 = 0;
+  } else{
+    vel4 = 5;
+  }
+  if (keyIsDown(87)) paddle2Pos.y = paddle2Pos.y - vel5;
+  if (paddle2Pos.y <= 0) {
+    vel5 = 0;
+  } else{
+    vel5 = 5;
+  }
+  if (keyIsDown(83)) paddle2Pos.y = paddle2Pos.y + vel6;
+  if (paddle2Pos.y >= height) {
+    vel6 = 0;
+  } else{
+    vel6 = 5;
+  }
+  if (keyIsDown(65)) paddle2Pos.x = paddle2Pos.x - vel7;
+  if (paddle2Pos.x <= 0) {
+    vel7 = 0;
+  } else{
+    vel7 = 5;
+  }
+  if (keyIsDown(68)) paddle2Pos.x = paddle2Pos.x + vel8;
+  if (paddle2Pos.x >= width) {
+    vel8 = 0;
+  } else{
+    vel8 = 5;
+  }
 
 }
 function Ball() {
