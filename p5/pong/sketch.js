@@ -6,6 +6,10 @@ var score2;
 var myState = 1;
 var font1;
 var trophy;
+var bot;
+var topw;
+var leftp;
+var rightp;
 
 function setup() {
   createCanvas (windowWidth - 5, windowHeight - 5);
@@ -14,6 +18,10 @@ ball.push(new Ball()) ;
 
 font1 = loadFont('assets/fonts/Press_Start_2P/PressStart2P-Regular.ttf');
 trophy = loadImage('assets/trophy.png');
+bot = loadSound('assets/bottomwall.wav');
+topw = loadSound('assets/topwall.wav');
+leftp = loadSound('assets/leftpaddle.wav');
+rightp = loadSound('assets/rightpaddle.wav');
 //  Montserrat_Subrayada/MontserratSubrayada-Bold.ttf
 
   rectMode(CENTER);
@@ -126,8 +134,14 @@ function Ball() {
 
     }
 
-    if (this.pos.y > height) this.vel.y = -this.vel.y;
-    if (this.pos.y < 0) this.vel.y = -this.vel.y;
+    if (this.pos.y >= height) {
+      this.vel.y = -this.vel.y;
+      topw.play();
+    }
+    if (this.pos.y <= 0) {
+       this.vel.y = -this.vel.y;
+       bot.play();
+     }
 
 
   }
@@ -152,6 +166,7 @@ function Game() {
     if (ball[i].vel.x >= 19) {
       ball[i].vel.x = 19;
     }
+    leftp.play();
     }
 
 
@@ -160,6 +175,7 @@ function Game() {
     if (ball[i].vel.x >= 19) {
       ball[i].vel.x = 19;
     }
+    rightp.play();
     }
 
   }
