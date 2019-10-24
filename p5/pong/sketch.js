@@ -1,0 +1,213 @@
+var paddle1Pos;
+var paddle2Pos;
+var ball = [];
+var score1;
+var score2;
+var myState = 1;
+var font1;
+var trophy;
+
+function setup() {
+  createCanvas (windowWidth - 5, windowHeight - 5);
+for (var i = 0; i < 1; i++)
+ball.push(new Ball()) ;
+
+font1 = loadFont('assets/fonts/Press_Start_2P/PressStart2P-Regular.ttf');
+trophy = loadImage('assets/trophy.png');
+//  Montserrat_Subrayada/MontserratSubrayada-Bold.ttf
+
+  rectMode(CENTER);
+  ellipseMode(CENTER);
+  textAlign(CENTER);
+  imageMode(CENTER);
+
+  paddle1Pos = createVector(5, height/2);
+  paddle2Pos = createVector(width - 5, height/2);
+  score1 = 0;
+  score2 = 0;
+
+}
+
+function draw() {
+
+
+switch (myState) {
+  case 1:
+    background(0);
+    fill(255);
+    textFont(font1);
+    textSize(20);
+    text('Player 1 Controls', width/4, height/2 - 15);
+    text('Arrow Keys', width/4, height/2 + 15);
+    text('Player 2 Controls', (3*width/4), height/2 - 15);
+    text('W A S D', (3*width/4), height/2 + 15);
+
+    textSize(50);
+    text('GNOP', width/2, 100)
+    text('Click to start', width/2, height-100)
+
+  break;
+  case 2:
+    Game();
+  break;
+  case 3:
+  background(0);
+  image(trophy, width/2, height/2);
+  text('Player 1 wins', width/2, height/2);
+  break;
+  case 4:
+  background(0)
+  image(trophy , width/2, height/2);
+  text('Player 2 wins', width/2, height/2);
+  break;
+
+}
+
+  if (score1 >= 7){
+  myState = 3;
+}
+if (score2 >= 7){
+myState = 4;
+}
+
+}
+
+
+function checkForKeys() {
+
+  if (keyIsDown(UP_ARROW)) paddle1Pos.y = paddle1Pos.y - 5;
+  if (keyIsDown(DOWN_ARROW)) paddle1Pos.y = paddle1Pos.y + 5;
+  if (keyIsDown(LEFT_ARROW)) paddle1Pos.x = paddle1Pos.x - 5;
+  if (keyIsDown(RIGHT_ARROW)) paddle1Pos.x = paddle1Pos.x + 5;
+  if (keyIsDown(87)) paddle2Pos.y = paddle2Pos.y - 5;
+  if (keyIsDown(83)) paddle2Pos.y = paddle2Pos.y + 5;
+  if (keyIsDown(65)) paddle2Pos.x = paddle2Pos.x - 5;
+  if (keyIsDown(68)) paddle2Pos.x = paddle2Pos.x + 5;
+
+}
+function Ball() {
+  this.pos = createVector(windowWidth/2, windowHeight/2);
+
+  this.vel = createVector(random(-1, 1), random(-5, 5));
+  if (this.vel.x>=0) {
+    this.vel.x = 5;
+  }
+  if (this.vel.x<0) {
+    this.vel.x = -5;
+  }
+
+
+
+
+  this.display = function() {
+      fill(255);
+    ellipse(this.pos.x, this.pos.y, 10, 10);
+
+  }
+
+  this.drive = function() {
+    this.pos.add(this.vel);
+
+
+    if (this.pos.x < (0 - 200)) {
+      score2 = score2 + 1;
+      this.pos.x = width/2;
+      ballReset();
+
+      this.vel.x = -this.vel.x;
+
+    }
+    if (this.pos.x > (width + 100)) {
+      score1 = score1 + 1;
+      this.pos.x = width/2;
+      this.vel.x = -this.vel.x;
+      ballReset();
+
+
+    }
+
+    if (this.pos.y > height) this.vel.y = -this.vel.y;
+    if (this.pos.y < 0) this.vel.y = -this.vel.y;
+
+
+  }
+}
+
+function Game() {
+  background(0);
+  noStroke();
+  fill('blue');
+  textSize(50);
+  text(score1, width/4, height/2);
+  text(score2, (3*width/4), height/2);
+
+
+  for (var i = 0; i < ball.length; i++) {
+  ball[i].display();
+  ball[i].drive();
+
+
+    if (((abs(ball[i].pos.x - paddle1Pos.x)) <= 20)  && (abs(ball[i].pos.y - paddle1Pos.y)) <= 50){
+    ball[i].vel.x = abs(ball[i].vel.x)+1;
+    if (ball[i].vel.x >= 19) {
+      ball[i].vel.x = 19;
+    }
+    }
+
+
+    if (((abs(ball[i].pos.x - paddle2Pos.x)) <= 20)  && (abs(ball[i].pos.y - paddle2Pos.y)) <= 50){
+    ball[i].vel.x = -(abs(ball[i].vel.x)+1);
+    if (ball[i].vel.x >= 19) {
+      ball[i].vel.x = 19;
+    }
+    }
+
+  }
+
+  fill(255);
+  rect(paddle1Pos.x, paddle1Pos.y, 10, 100);
+  rect(paddle2Pos.x - 5, paddle2Pos.y, 10, 100);
+
+  checkForKeys();
+
+
+
+
+}
+
+function mouseReleased() {
+ switch (myState) {
+   case 1:
+     myState = 2
+     break;
+
+    case 3:
+    myState = 1;
+resetTheGame();
+    score1 = 0;
+    score2 = 0;
+    break;
+
+    case 4:
+    myState = 1;
+    score1 = 0;
+    score2 = 0;
+resetTheGame();
+ }
+}
+
+function resetTheGame() {
+
+  paddle1Pos.x = 5;
+  paddle1Pos.y = height/2;
+  paddle2Pos.x = width - 5;
+  paddle2Pos.y = height/2;
+
+}
+
+function ballReset() {
+  ball.splice(i);
+  for (var i = 0; i < 1; i++)
+  ball.push(new Ball()) ;
+
+}
