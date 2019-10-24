@@ -41,6 +41,7 @@ win = loadSound('assets/win.wav');
   textAlign(CENTER);
   imageMode(CENTER);
 
+
   paddle1Pos = createVector(5, height/2);
   paddle2Pos = createVector(width - 5, height/2);
   score1 = 0;
@@ -68,7 +69,9 @@ switch (myState) {
 
   break;
   case 2:
+
     Game();
+
   break;
   case 3:
   background(0);
@@ -215,6 +218,12 @@ function Ball() {
 
 function Game() {
   background(0);
+  fill(200);
+  rect(width/2, height - 10, width - 35, 5);
+  rect(width/2, 10, width - 35, 5);
+  rect(20, height/2, 5, height-20)
+  rect(width-20, height/2, 5, height-20)
+  rect(width/2, height/2, 5, height-20)
   noStroke();
   fill('blue');
   textSize(50);
