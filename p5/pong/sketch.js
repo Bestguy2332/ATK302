@@ -42,8 +42,8 @@ win = loadSound('assets/win.wav');
   imageMode(CENTER);
 
 
-  paddle1Pos = createVector(5, height/2);
-  paddle2Pos = createVector(width - 5, height/2);
+  paddle2Pos = createVector(5, height/2);
+  paddle1Pos = createVector(width - 5, height/2);
   score1 = 0;
   score2 = 0;
 
@@ -64,7 +64,7 @@ switch (myState) {
     text('W A S D', (3*width/4), height/2 + 15);
 
     textSize(50);
-    text('GNOP', width/2, 100)
+    text('OPGN', width/2, 100)
     text('Click to start', width/2, height-100)
 
   break;
@@ -76,13 +76,13 @@ switch (myState) {
   case 3:
   background(0);
   image(trophy, width/2, height/2);
-  text('Player 1 wins', width/2, height/2);
+  text('Player 2 wins', width/2, height/2);
 
   break;
   case 4:
   background(0)
   image(trophy , width/2, height/2);
-  text('Player 2 wins', width/2, height/2);
+  text('Player 1 wins', width/2, height/2);
 
 
   break;
@@ -111,52 +111,52 @@ function checkForKeys() {
   if (paddle1Pos.y <= 0) {
     vel1 = 0;
   } else{
-    vel1 = 5;
+    vel1 = 6;
   }
 
   if (keyIsDown(DOWN_ARROW)) paddle1Pos.y = paddle1Pos.y + vel2;
   if (paddle1Pos.y >= height) {
     vel2 = 0;
   } else{
-    vel2 = 5;
+    vel2 = 6;
   }
 
   if (keyIsDown(LEFT_ARROW)) paddle1Pos.x = paddle1Pos.x - vel3;
   if (paddle1Pos.x <= 0) {
     vel3 = 0;
   } else{
-    vel3 = 5;
+    vel3 = 6;
   }
 
   if (keyIsDown(RIGHT_ARROW)) paddle1Pos.x = paddle1Pos.x + vel4;
   if (paddle1Pos.x >= width) {
     vel4 = 0;
   } else{
-    vel4 = 5;
+    vel4 = 6;
   }
   if (keyIsDown(87)) paddle2Pos.y = paddle2Pos.y - vel5;
   if (paddle2Pos.y <= 0) {
     vel5 = 0;
   } else{
-    vel5 = 5;
+    vel5 = 6;
   }
   if (keyIsDown(83)) paddle2Pos.y = paddle2Pos.y + vel6;
   if (paddle2Pos.y >= height) {
     vel6 = 0;
   } else{
-    vel6 = 5;
+    vel6 = 6;
   }
   if (keyIsDown(65)) paddle2Pos.x = paddle2Pos.x - vel7;
   if (paddle2Pos.x <= 0) {
     vel7 = 0;
   } else{
-    vel7 = 5;
+    vel7 = 6;
   }
   if (keyIsDown(68)) paddle2Pos.x = paddle2Pos.x + vel8;
   if (paddle2Pos.x >= width) {
     vel8 = 0;
   } else{
-    vel8 = 5;
+    vel8 = 6;
   }
 
 }
@@ -236,7 +236,7 @@ function Game() {
   ball[i].drive();
 
 
-    if (((abs(ball[i].pos.x - paddle1Pos.x)) <= 20)  && (abs(ball[i].pos.y - paddle1Pos.y)) <= 50){
+    if (((abs(ball[i].pos.x - paddle2Pos.x)) <= 20)  && (abs(ball[i].pos.y - paddle2Pos.y)) <= 50){
     ball[i].vel.x = abs(ball[i].vel.x)+1;
     if (ball[i].vel.x >= 19) {
       ball[i].vel.x = 19;
@@ -245,7 +245,7 @@ function Game() {
     }
 
 
-    if (((abs(ball[i].pos.x - paddle2Pos.x)) <= 20)  && (abs(ball[i].pos.y - paddle2Pos.y)) <= 50){
+    if (((abs(ball[i].pos.x - paddle1Pos.x)) <= 20)  && (abs(ball[i].pos.y - paddle1Pos.y)) <= 50){
     ball[i].vel.x = -(abs(ball[i].vel.x)+1);
     if (ball[i].vel.x >= 19) {
       ball[i].vel.x = 19;
@@ -256,8 +256,15 @@ function Game() {
   }
 
   fill(255);
-  rect(paddle1Pos.x, paddle1Pos.y, 10, 100);
-  rect(paddle2Pos.x - 5, paddle2Pos.y, 10, 100);
+  rect(paddle2Pos.x, paddle2Pos.y, 10, 100);
+  rect(paddle1Pos.x - 5, paddle1Pos.y, 10, 100);
+
+  if (((abs(paddle1Pos.x - paddle2Pos.x)) <= 10) && ((abs(paddle1Pos.y - paddle2Pos.y))) <= 50) {
+    paddle2Pos.x = 5;
+    paddle2Pos.y = height/2;
+    paddle1Pos.x = width - 5;
+    paddle1Pos.y = height/2;
+}
 
   checkForKeys();
 
@@ -289,10 +296,10 @@ resetTheGame();
 
 function resetTheGame() {
 
-  paddle1Pos.x = 5;
-  paddle1Pos.y = height/2;
-  paddle2Pos.x = width - 5;
+  paddle2Pos.x = 5;
   paddle2Pos.y = height/2;
+  paddle1Pos.x = width - 5;
+  paddle1Pos.y = height/2;
 
 }
 
