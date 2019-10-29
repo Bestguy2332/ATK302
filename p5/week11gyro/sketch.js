@@ -9,11 +9,12 @@ var z = 0;
 
 function setup() {
 createCanvas (windowWidth-5, windowHeight-5);
-for (var i = 0; i < 60; i++)
+for (var i = 0; i < 100; i++)
 car.push(new Car());
-shipPos = createVector(0, 0);
+shipPos = createVector(0, -250);
 
 rectMode(CENTER);
+ellipseMode(CENTER);
 
 alpha = 0;
 beta = 0;
@@ -26,8 +27,8 @@ background(0);
 xPosition = shipPos.x;
 yPosition = shipPos.y;
 
-xPosition = map(gamma, 0, 60, 0, width);
- yPosition = map(beta, 0, 30, 0, height);
+xPosition = map(gamma, -60, 60, 0, width);
+ yPosition = map(beta, -30, 30, 0, height);
 fill(255)
  push(); // before you use translate, rotate, or scale commands, push and then pop after
 
@@ -46,7 +47,7 @@ for (var i = 0; i < car.length; i++) {
 car[i].display();
 car[i].drive();
 
-if (car[i].pos.dist(shipPos) < 20.01) {
+if (car[i].pos.dist(shipPos) <= 20) {
 car.splice(i,1);
 }
 
