@@ -26,8 +26,8 @@ background(0);
 xPosition = shipPos.x;
 yPosition = shipPos.y;
 
-xPosition = map(gamma, -60, 60, 0, width);
- yPosition = map(beta, -30, 30, 0, height);
+xPosition = map(gamma, 0, 60, 0, width);
+ yPosition = map(beta, 0, 30, 0, height);
 fill(255)
  push(); // before you use translate, rotate, or scale commands, push and then pop after
 
