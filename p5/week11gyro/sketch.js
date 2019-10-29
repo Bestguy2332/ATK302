@@ -11,7 +11,7 @@ function setup() {
 createCanvas (windowWidth-5, windowHeight-5);
 for (var i = 0; i < 60; i++)
 car.push(new Car());
-shipPos = createVector(width/2, height - 200);
+shipPos = createVector(0, 0);
 
 rectMode(CENTER);
 
@@ -36,7 +36,7 @@ fill(255)
    rotate(radians(alpha)); // using alpha in here so it doesn't feel bad
 
 
-   rect(0, 0, 20, 20)
+   rect(shipPos.x, shipPos.y, 20, 20)
    //  	rect(0, 0, 100, 100) ;
    pop();
 
