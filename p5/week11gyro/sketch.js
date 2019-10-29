@@ -36,7 +36,7 @@ fill(255)
    rotate(radians(alpha)); // using alpha in here so it doesn't feel bad
 
 
-   rect(shipPos.x, shipPos.y, 20, 20)
+   rect(0, 0, 20, 20)
    //  	rect(0, 0, 100, 100) ;
    pop();
 
