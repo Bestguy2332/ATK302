@@ -11,7 +11,7 @@ function setup() {
 createCanvas (windowWidth-5, windowHeight-5);
 for (var i = 0; i < 20; i++)
 car.push(new Car());
-shipPos = createVector(0, height/4);
+shipPos = createVector(0, 0);
 
 rectMode(CENTER);
 ellipseMode(CENTER);
