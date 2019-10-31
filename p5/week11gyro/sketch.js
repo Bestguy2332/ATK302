@@ -47,7 +47,7 @@ for (var i = 0; i < car.length; i++) {
 car[i].display();
 car[i].drive();
 
-if (car[i].pos.dist(shipPos) <= 20) {
+if (abs(car[i].pos.dist(shipPos)) <= 20) {
 car.splice(i,1);
 }
 
