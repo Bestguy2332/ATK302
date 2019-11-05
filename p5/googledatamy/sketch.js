@@ -53,7 +53,7 @@ function draw() {
 // my circle class
 function Circle(myName, myColor) {
   this.pos = createVector(random(width), random(height));
-  this.vel = createVector(random(-5, 5), random(-5, 5));
+  this.vel = createVector(random(-3, 3), random(-3, 3));
   this.name = myName;
   this.color = myColor;
 
