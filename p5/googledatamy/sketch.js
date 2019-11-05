@@ -82,7 +82,7 @@ fill(0,0,255);
 ellipse(this.pos.x, this.pos.y, 100, 100);
 }
 if (myColor === 'purple') {
-fill(174, 0, 255);
+fill(174, 0, 174);
 ellipse(this.pos.x, this.pos.y, 100, 100);
 }
     fill(0);
