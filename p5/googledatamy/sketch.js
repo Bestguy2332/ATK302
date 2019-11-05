@@ -44,7 +44,7 @@ function draw() {
     namesArray[i].display() ;
     namesArray[i].drive();
 
-
+noStroke();
   }
 
 }
