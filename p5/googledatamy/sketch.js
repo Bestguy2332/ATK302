@@ -1,5 +1,6 @@
 var namesArray = [];
 var vel = 0;
+
 function setup() {
 
   // Tabletop stuff, for getting google spreadsheet data in.
