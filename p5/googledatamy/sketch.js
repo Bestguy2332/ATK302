@@ -89,10 +89,10 @@ ellipse(this.pos.x, this.pos.y, 100, 100);
 
     this.drive = function() {
       this.pos.add(this.vel);
-      if (this.pos.x > width) this.pos.x = 0;
-      if (this.pos.x < 0) this.pos.x = width;
-      if (this.pos.y > height) this.pos.y = 0;
-      if (this.pos.y < 0) this.pos.y = height;
+      if (this.pos.x > (width + 50)) this.pos.x = 0;
+      if (this.pos.x < -50) this.pos.x = width;
+      if (this.pos.y > (height + 50)) this.pos.y = 0;
+      if (this.pos.y < -50) this.pos.y = height;
     }
 
   }
