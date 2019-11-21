@@ -1,67 +1,79 @@
-<html>
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>p5.js example</title>
+    <style> body {padding: 0; margin: 0;} </style>
+    <script src="../libs/p5.js"></script>
+    <script src="../libs/p5.dom.js"></script>
+    <script src="../libs/p5.sound.js"></script>
+    <script src="sketch.js"></script>
+    <!-- import jquery-->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <!-- import tramontana-->
+      <script src="lib/tramontana_min.js"></script>
+    <!-- create a global variable-->
+      <script>
+        var device1 = new tramontana();
+        var device2 = new tramontana();
+      </script>
+      	<link rel="stylesheet" type="text/css" href="./css.css">
 
-<head>
+  </head>
+  <body>
 
-<!-- import css-->
 
-<link rel="stylesheet" type="text/css" href="./stylesheet.css">
+    <p id="p2">
+    <!-- OPEN SOCKET -->
+    <label>IPAddress P2:</label>
+    <input type="text" id="ipInput1" placeholder="put IP on app here"><br/>
+    <button onclick="device1.start($('#ipInput1').val(), function(e){
+if(e==undefined){
+//SUCCESS TRAMONTANA CONNECTED
+device1.makeVibrate();
+}
+});">start</button>
 
-<!-- import jquery-->
+    <!-- CHANGE device COLOR -->
+    <button onclick="console.log('change color');device1.setColor(Math.random(0,255),Math.random(0,255),Math.random(0,255),255
+    );">change color</button>
+    <button onclick="device1.subscribeAttitude($('#attitudeFrequency').val()-0,function(ip,e){
 
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
-<!-- import tramontana-->
+        $('#attitudeContentR2').html(e['r']);
+      });">subscribe attitude</button><br/>
 
- <script src="../lib/tramontana_min.js"></script>
+      roll:<span id="attitudeContentR2">unknown</span>
+    </p>
 
-<!-- create a global variable-->
+    <p id="p1">
+    <!-- OPEN SOCKET -->
+    <label>IPAddress P1:</label>
+    <input type="text" id="ipInput2" placeholder="put IP on app here"><br/>
+    <button onclick="device2.start($('#ipInput2').val(), function(e){
+if(e==undefined){
+//SUCCESS TRAMONTANA CONNECTED
+device2.makeVibrate();
+}
+});">start</button>
 
- <script>
+    <!-- CHANGE device COLOR -->
+    <button onclick="console.log('change color');device2.setColor(Math.random(0,255),Math.random(0,255),Math.random(0,255),255
+    );">change color</button>
 
-  var device = new tramontana();
+    <button id="roll1" onclick="device2.subscribeAttitude($('#attitudeFrequency').val()-0,function(ip,e){
 
- </script>
 
-</head>
+        $('#attitudeContentR1').html(e['r']);
+      });">subscribe attitude</button><br/>
 
-<body>
+      roll:<span id="attitudeContentR1">unknown</span>
+    </p>
 
- <!--Link to tramontana the app!-->
+  <script src="lib/tramontana_min.js"></script>
 
- <div>
 
- <h4>To get started download the Tramontana App on your iOS device from <a href="https://itunes.apple.com/us/app/tramontana/id1121069555?mt=8">here</a> or on your Android device from <a href="https://itunes.apple.com/us/app/tramontana/id1121069555?mt=8">here</a>.</h4>
-
- <p>
-
-  1. Insert the IP Address of your device and press start.
-
- </p>
-
- <p>
-
-  2. Press change color to change the color of the screen of your device.
-
- </p>
-
- </div>
-
- <!-- OPEN SOCKET -->
-
- <label>IPAddress:</label>
-
- <input type="text" id="ipInput" placeholder="192.168.1.1"><br/>
-
- <button onclick="device.start($('#ipInput').val())">start</button>
-
- <!-- CHANGE device COLOR -->
-
- <button onclick="console.log('change color');device.setColor(Math.random(0,255),Math.random(0,255),Math.random(0,255),255
-
- );">change color</button>
-
- </p>
-
-</body>
+  </body>
 
 </html>
