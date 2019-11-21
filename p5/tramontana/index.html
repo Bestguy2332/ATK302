@@ -52,6 +52,7 @@ device1.makeVibrate();
     <label>IPAddress P1:</label>
     <input type="text" id="ipInput2" placeholder="put IP on app here"><br/>
     <button onclick="device2.start($('#ipInput2').val(), function(e){
+      $('button').removeAttr('disabled');
 if(e==undefined){
 //SUCCESS TRAMONTANA CONNECTED
 device2.makeVibrate();
