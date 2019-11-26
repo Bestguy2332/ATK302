@@ -4,6 +4,10 @@ var control1;
 var control2;
 var paddle1Pos;
 var paddle2Pos;
+var paddle3Pos;
+var paddle4Pos;
+var paddle5Pos;
+var paddle6Pos;
 var ball = [];
 var score1;
 var score2;
@@ -26,6 +30,8 @@ var vel7;
 var vel8;
 var field;
 var menu;
+var redp;
+var bluep;
 
 function setup() {
   createCanvas ((windowWidth), (windowHeight - 100));
@@ -43,16 +49,23 @@ function setup() {
   rightp = loadSound('assets/rightpaddle.wav');
   score = loadSound('assets/score.wav');
   win = loadSound('assets/win.wav');
-  field = loadImage('assets/field.jpg')
-  menu = loadImage('assets/menu.jpg')
+  field = loadImage('assets/field.jpg');
+  menu = loadImage('assets/menu.jpg');
+  redp = loadImage('assets/redp.png');
+  bluep = loadImage('assets/bluep.png');
+
   rectMode(CENTER);
   ellipseMode(CENTER);
   textAlign(CENTER);
   imageMode(CENTER);
 
 
-  paddle2Pos = createVector(5, height/2);
-  paddle1Pos = createVector(width - 5, height/2);
+  paddle2Pos = createVector(20, height/2);
+  paddle4Pos = createVector((width/2)+250, height/4)
+  paddle6Pos = createVector((width/2)+250, 3*(height/4))
+  paddle1Pos = createVector(width - 20, height/2);
+  paddle3Pos = createVector((width/2)-250, height/4)
+  paddle5Pos = createVector((width/2)-250, 3*(height/4))
   score1 = 0;
   score2 = 0;
 
@@ -82,40 +95,7 @@ function draw() {
 
 
 
-if (control1 >= .5) {
-  paddle2Pos.y = paddle2Pos.y - vel1;
-  if (paddle2Pos.y <= 0) {
-    vel1 = 0;
-  } else{
-    vel1 = 6;
-  }
-}
 
-if (control1 <= -.5) {
-  paddle2Pos.y = paddle2Pos.y + vel2;
-  if (paddle2Pos.y >= height) {
-    vel2 = 0;
-  } else{
-    vel2 = 6;
-  }
-}
-
-if (control2 >= .5) {
-  paddle1Pos.y = paddle1Pos.y - vel5;
-  if (paddle1Pos.y <= 0) {
-    vel5 = 0;
-  } else{
-    vel5 = 6;
-  }
-}
-if (control2 <= -.5) {
-  paddle1Pos.y = paddle1Pos.y + vel6;
-  if (paddle1Pos.y >= height) {
-    vel6 = 0;
-  } else{
-    vel6 = 6;
-  }
-}
 
 break;
 case 3:
@@ -203,6 +183,20 @@ function checkForKeys() {
     vel8 = 6;
   }
 
+  if (control1 >= .5) paddle2Pos.y = paddle2Pos.y - vel5;
+
+
+
+  if (control1 <= -.5) paddle2Pos.y = paddle2Pos.y + vel6;
+
+
+
+  if (control2 >= .5) paddle1Pos.y = paddle1Pos.y - vel1;
+
+
+  if (control2 <= -.5) paddle1Pos.y = paddle1Pos.y + vel2;
+
+
 }
 
 
@@ -235,7 +229,7 @@ function Ball() {
       this.vel.x = -this.vel.x;
 
     }
-    if (this.pos.x > (width + 100)) {
+    if (this.pos.x > (width + 200)) {
       score1 = score1 + 1;
       this.pos.x = width/2;
       this.vel.x = -this.vel.x;
@@ -260,9 +254,9 @@ function Ball() {
 
 function Game() {
   imageMode(CORNER);
-  background(field);
+  background(0);
   imageMode(CENTER);
-  
+
   noStroke();
   fill('blue');
   textSize(50);
@@ -295,8 +289,8 @@ function Game() {
   }
 
   fill(255);
-  rect(paddle2Pos.x, paddle2Pos.y, 10, 100);
-  rect(paddle1Pos.x - 5, paddle1Pos.y, 10, 100);
+  image(redp, paddle2Pos.x, paddle2Pos.y, 50, 100);
+  image(bluep, paddle1Pos.x - 5, paddle1Pos.y, 50, 100);
 
   if (((abs(paddle1Pos.x - paddle2Pos.x)) <= 10) && ((abs(paddle1Pos.y - paddle2Pos.y))) <= 50) {
     paddle2Pos.x = 5;

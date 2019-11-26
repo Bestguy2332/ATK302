@@ -27,18 +27,18 @@
     <p id="p2">
     <!-- OPEN SOCKET -->
     <label>IPAddress P2:</label>
-    <input type="text" id="ipInput1" placeholder="put IP on app here"><br/>
-    <button onclick="device1.start($('#ipInput1').val(), function(e){
+    <input type="text" id="ipInput2" placeholder="put IP on app here"><br/>
+    <button onclick="device2.start($('#ipInput2').val(), function(e){
 if(e==undefined){
 //SUCCESS TRAMONTANA CONNECTED
-device1.makeVibrate();
+device2.makeVibrate();
 }
 });">start</button>
 
     <!-- CHANGE device COLOR -->
-    <button onclick="console.log('change color');device1.setColor(Math.random(0,255),Math.random(0,255),Math.random(0,255),255
+    <button onclick="console.log('change color');device2.setColor(Math.random(0,255),Math.random(0,255),Math.random(0,255),255
     );">change color</button>
-    <button onclick="device1.subscribeAttitude($('#attitudeFrequency').val()-0,function(ip,e){
+    <button onclick="device2.subscribeAttitude($('#attitudeFrequency2').val()-0,function(ip,e){
 
 
         $('#attitudeContentR2').html(e['r']);
@@ -50,20 +50,20 @@ device1.makeVibrate();
     <p id="p1">
     <!-- OPEN SOCKET -->
     <label>IPAddress P1:</label>
-    <input type="text" id="ipInput2" placeholder="put IP on app here"><br/>
-    <button onclick="device2.start($('#ipInput2').val(), function(e){
+    <input type="text" id="ipInput1" placeholder="put IP on app here"><br/>
+    <button onclick="device1.start($('#ipInput1').val(), function(e){
       $('button').removeAttr('disabled');
 if(e==undefined){
 //SUCCESS TRAMONTANA CONNECTED
-device2.makeVibrate();
+device1.makeVibrate();
 }
 });">start</button>
 
     <!-- CHANGE device COLOR -->
-    <button onclick="console.log('change color');device2.setColor(Math.random(0,255),Math.random(0,255),Math.random(0,255),255
+    <button onclick="console.log('change color');device1.setColor(Math.random(0,255),Math.random(0,255),Math.random(0,255),255
     );">change color</button>
 
-    <button id="roll1" onclick="device2.subscribeAttitude($('#attitudeFrequency').val()-0,function(ip,e){
+    <button id="roll1" onclick="device1.subscribeAttitude($('#attitudeFrequency1').val()-0,function(ip,e){
 
 
         $('#attitudeContentR1').html(e['r']);
@@ -72,7 +72,7 @@ device2.makeVibrate();
       roll:<span id="attitudeContentR1">unknown</span>
     </p>
 
-  <script src="lib/tramontana_min.js"></script>
+
 
 
   </body>
