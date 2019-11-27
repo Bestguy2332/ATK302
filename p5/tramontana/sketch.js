@@ -131,70 +131,110 @@ score2=0;
 }
 
 function checkForKeys() {
-  if (keyIsDown(UP_ARROW)) paddle1Pos.y = paddle1Pos.y - vel1;
-  if (paddle1Pos.y <= 0) {
+  if (keyIsDown(UP_ARROW)) {
+    paddle1Pos.y = paddle1Pos.y - vel1;
+    paddle3Pos.y = paddle3Pos.y - vel1;
+    paddle5Pos.y = paddle5Pos.y - vel1;
+  }
+  if (paddle3Pos.y <= 0) {
     vel1 = 0;
   } else{
     vel1 = 6;
   }
 
-  if (keyIsDown(DOWN_ARROW)) paddle1Pos.y = paddle1Pos.y + vel2;
-  if (paddle1Pos.y >= height) {
+  if (keyIsDown(DOWN_ARROW))  {
+    paddle1Pos.y = paddle1Pos.y + vel2;
+    paddle3Pos.y = paddle3Pos.y + vel2;
+    paddle5Pos.y = paddle5Pos.y + vel2;
+  }
+  if (paddle5Pos.y >= height) {
     vel2 = 0;
   } else{
     vel2 = 6;
   }
 
-  if (keyIsDown(LEFT_ARROW)) paddle1Pos.x = paddle1Pos.x - vel3;
-  if (paddle1Pos.x <= 0) {
+  if (keyIsDown(LEFT_ARROW)) {
+    paddle1Pos.x = paddle1Pos.x - vel3;
+    paddle3Pos.x = paddle3Pos.x - vel3;
+    paddle5Pos.x = paddle5Pos.x - vel3;
+  }
+  if (paddle3Pos.x <= 0) {
     vel3 = 0;
   } else{
     vel3 = 6;
   }
 
-  if (keyIsDown(RIGHT_ARROW)) paddle1Pos.x = paddle1Pos.x + vel4;
+  if (keyIsDown(RIGHT_ARROW)) {
+    paddle1Pos.x = paddle1Pos.x + vel4;
+    paddle3Pos.x = paddle3Pos.x + vel4;
+    paddle5Pos.x = paddle5Pos.x + vel4;
+  }
   if (paddle1Pos.x >= width) {
     vel4 = 0;
   } else{
     vel4 = 6;
   }
-  if (keyIsDown(87)) paddle2Pos.y = paddle2Pos.y - vel5;
-  if (paddle2Pos.y <= 0) {
+  if (keyIsDown(87)) {
+    paddle2Pos.y = paddle2Pos.y - vel5;
+    paddle4Pos.y = paddle4Pos.y - vel5;
+    paddle6Pos.y = paddle6Pos.y - vel5;
+  }
+  if (paddle4Pos.y <= 0) {
     vel5 = 0;
   } else{
     vel5 = 6;
   }
-  if (keyIsDown(83)) paddle2Pos.y = paddle2Pos.y + vel6;
-  if (paddle2Pos.y >= height) {
+  if (keyIsDown(83)) {
+    paddle2Pos.y = paddle2Pos.y + vel6;
+    paddle4Pos.y = paddle4Pos.y + vel6;
+    paddle6Pos.y = paddle6Pos.y + vel6;
+  }
+  if (paddle6Pos.y >= height) {
     vel6 = 0;
   } else{
     vel6 = 6;
   }
-  if (keyIsDown(65)) paddle2Pos.x = paddle2Pos.x - vel7;
+  if (keyIsDown(65)) {
+    paddle2Pos.x = paddle2Pos.x - vel7;
+    paddle4Pos.x = paddle4Pos.x - vel7;
+    paddle6Pos.x = paddle6Pos.x - vel7;
+  }
   if (paddle2Pos.x <= 0) {
     vel7 = 0;
   } else{
     vel7 = 6;
   }
-  if (keyIsDown(68)) paddle2Pos.x = paddle2Pos.x + vel8;
-  if (paddle2Pos.x >= width) {
+  if (keyIsDown(68)) {
+    paddle2Pos.x = paddle2Pos.x + vel8;
+    paddle4Pos.x = paddle4Pos.x + vel8;
+    paddle6Pos.x = paddle6Pos.x + vel8;
+  }
+  if (paddle4Pos.x >= width) {
     vel8 = 0;
   } else{
     vel8 = 6;
   }
 
-  if (control1 >= .5) paddle2Pos.y = paddle2Pos.y - vel5;
-
-
-
-  if (control1 <= -.5) paddle2Pos.y = paddle2Pos.y + vel6;
-
-
-
-  if (control2 >= .5) paddle1Pos.y = paddle1Pos.y - vel1;
-
-
-  if (control2 <= -.5) paddle1Pos.y = paddle1Pos.y + vel2;
+  if (control1 >= .5) {
+    paddle2Pos.y = paddle2Pos.y - vel5;
+    paddle4Pos.y = paddle4Pos.y - vel5;
+    paddle6Pos.y = paddle6Pos.y - vel5;
+  }
+  if (control1 <= -.5) {
+    paddle2Pos.y = paddle2Pos.y + vel6;
+    paddle4Pos.y = paddle4Pos.y + vel6;
+    paddle6Pos.y = paddle6Pos.y + vel6;
+  }
+  if (control2 >= .5) {
+    paddle1Pos.y = paddle1Pos.y - vel1;
+    paddle3Pos.y = paddle3Pos.y - vel1;
+    paddle5Pos.y = paddle5Pos.y - vel1;
+  }
+  if (control2 <= -.5) {
+    paddle1Pos.y = paddle1Pos.y + vel2;
+    paddle3Pos.y = paddle3Pos.y + vel2;
+    paddle5Pos.y = paddle5Pos.y + vel2;
+  }
 
 
 }
@@ -286,17 +326,64 @@ function Game() {
     rightp.play();
     }
 
+    if (((abs(ball[i].pos.x - paddle4Pos.x)) <= 20)  && (abs(ball[i].pos.y - paddle4Pos.y)) <= 50){
+    ball[i].vel.x = abs(ball[i].vel.x)+1;
+    if (ball[i].vel.x >= 19) {
+      ball[i].vel.x = 19;
+    }
+    leftp.play();
+    }
+
+
+    if (((abs(ball[i].pos.x - paddle3Pos.x)) <= 20)  && (abs(ball[i].pos.y - paddle3Pos.y)) <= 50){
+    ball[i].vel.x = -(abs(ball[i].vel.x)+1);
+    if (ball[i].vel.x >= 19) {
+      ball[i].vel.x = 19;
+    }
+    rightp.play();
+    }
+
+    if (((abs(ball[i].pos.x - paddle6Pos.x)) <= 20)  && (abs(ball[i].pos.y - paddle6Pos.y)) <= 50){
+    ball[i].vel.x = abs(ball[i].vel.x)+1;
+    if (ball[i].vel.x >= 19) {
+      ball[i].vel.x = 19;
+    }
+    leftp.play();
+    }
+
+
+    if (((abs(ball[i].pos.x - paddle5Pos.x)) <= 20)  && (abs(ball[i].pos.y - paddle5Pos.y)) <= 50){
+    ball[i].vel.x = -(abs(ball[i].vel.x)+1);
+    if (ball[i].vel.x >= 19) {
+      ball[i].vel.x = 19;
+    }
+    rightp.play();
+    }
   }
 
   fill(255);
   image(redp, paddle2Pos.x, paddle2Pos.y, 50, 100);
-  image(bluep, paddle1Pos.x - 5, paddle1Pos.y, 50, 100);
+  image(bluep, paddle1Pos.x, paddle1Pos.y, 50, 100);
+  image(redp, paddle4Pos.x, paddle4Pos.y, 50, 100);
+  image(redp, paddle6Pos.x, paddle6Pos.y, 50, 100);
+  image(bluep, paddle3Pos.x, paddle3Pos.y, 50, 100);
+  image(bluep, paddle5Pos.x, paddle5Pos.y, 50, 100);
+
+
 
   if (((abs(paddle1Pos.x - paddle2Pos.x)) <= 10) && ((abs(paddle1Pos.y - paddle2Pos.y))) <= 50) {
     paddle2Pos.x = 5;
     paddle2Pos.y = height/2;
     paddle1Pos.x = width - 5;
     paddle1Pos.y = height/2;
+    paddle3Pos.x = (width/2)-250;
+    paddle3Pos.y = height/4;
+    paddle5Pos.x = (width/2)-250;
+    paddle5Pos.y = 3*(height/4);
+    paddle4Pos.x =(width/2)+250;
+    paddle4Pos.y = height/4;
+    paddle6Pos.x = (width/2)+250;
+    paddle6Pos.y = 3*(height/4);
 }
 
   checkForKeys();
@@ -334,6 +421,14 @@ function resetTheGame() {
   paddle2Pos.y = height/2;
   paddle1Pos.x = width - 5;
   paddle1Pos.y = height/2;
+  paddle3Pos.x = (width/2)-250;
+  paddle3Pos.y = height/4;
+  paddle5Pos.x = (width/2)-250;
+  paddle5Pos.y = 3*(height/4);
+  paddle4Pos.x =(width/2)+250;
+  paddle4Pos.y = height/4;
+  paddle6Pos.x = (width/2)+250;
+  paddle6Pos.y = 3*(height/4);
 
 }
 
