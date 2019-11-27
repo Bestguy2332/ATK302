@@ -53,6 +53,7 @@ function setup() {
   menu = loadImage('assets/menu.jpg');
   redp = loadImage('assets/redp.png');
   bluep = loadImage('assets/bluep.png');
+  winb = loadImage('assets/win.jpg');
 
   rectMode(CENTER);
   ellipseMode(CENTER);
@@ -99,14 +100,18 @@ function draw() {
 
 break;
 case 3:
-background(0);
-image(trophy, width/2, height/2);
+imageMode(CORNER);
+background(winb);
+imageMode(CENTER);
+
 text('Player 2 wins', width/2, height/2);
 
 break;
 case 4:
-background(0)
-image(trophy , width/2, height/2);
+imageMode(CORNER);
+background(winb);
+imageMode(CENTER);
+
 text('Player 1 wins', width/2, height/2);
 
 
