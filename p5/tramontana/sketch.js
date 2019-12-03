@@ -42,7 +42,8 @@ function setup() {
   ball.push(new Ball()) ;
 
   font1 = loadFont('assets/fonts/Press_Start_2P/PressStart2P-Regular.ttf');
-  trophy = loadImage('assets/trophy.png');
+  trophyred = loadImage('assets/redwins.jpg');
+  trophyblue = loadImage('assets/bluewins.jpg');
   bot = loadSound('assets/bottomwall.wav');
   topw = loadSound('assets/topwall.wav');
   leftp = loadSound('assets/leftpaddle.wav');
@@ -101,18 +102,18 @@ function draw() {
 break;
 case 3:
 imageMode(CORNER);
-background(winb);
+background(trophyred);
 imageMode(CENTER);
 
-text('Player 2 wins', width/2, height/2);
+
 
 break;
 case 4:
 imageMode(CORNER);
-background(winb);
+background(trophyblue);
 imageMode(CENTER);
 
-text('Player 1 wins', width/2, height/2);
+
 
 
 break;
@@ -265,7 +266,7 @@ function Ball() {
     this.pos.add(this.vel);
 
 
-    if (this.pos.x < (0 - 200)) {
+    if (this.pos.x < (0 - 50)) {
       score2 = score2 + 1;
       this.pos.x = width/2;
       ballReset();
@@ -274,7 +275,7 @@ function Ball() {
       this.vel.x = -this.vel.x;
 
     }
-    if (this.pos.x > (width + 200)) {
+    if (this.pos.x > (width + 50)) {
       score1 = score1 + 1;
       this.pos.x = width/2;
       this.vel.x = -this.vel.x;
@@ -292,14 +293,25 @@ function Ball() {
        this.vel.y = -this.vel.y;
        bot.play();
      }
-
+     if ((this.pos.x <= 0) && (this.pos.y <= height/4)) {
+       this.vel.x = abs(this.vel.x)
+     }
+     if ((this.pos.x <= 0) && (this.pos.y >= 3*(height/4))) {
+       this.vel.x = abs(this.vel.x)
+     }
+     if ((this.pos.x >= width) && (this.pos.y <= height/4)) {
+       this.vel.x = -abs(this.vel.x)
+     }
+     if ((this.pos.x >= width) && (this.pos.y >= 3*(height/4))) {
+       this.vel.x = -abs(this.vel.x)
+     }
 
   }
 }
 
 function Game() {
   imageMode(CORNER);
-  background(0);
+  background(field);
   imageMode(CENTER);
 
   noStroke();
@@ -392,8 +404,12 @@ function Game() {
 }
 
   checkForKeys();
-
-
+rectMode(CORNER);
+rect(0, 0, 5, height/4);
+rect(0, 3*(height/4), 5, height/4);
+rect(width-5, 0, 5, height/4);
+rect(width-5, 3*(height/4), 5, height/4);
+rectMode(CENTER);
 
 
 }
