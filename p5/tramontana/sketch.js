@@ -35,17 +35,11 @@ var bluep;
 var playb;
 var crowd;
 var menumusic;
-var backw
-
-function setup() {
-  createCanvas ((windowWidth), (windowHeight - 100));
+var backw;
+var starter;
 
 
-
-  for (var i = 0; i < 1; i++)
-  ball.push(new Ball()) ;
-
-
+function preload() {
   font1 = loadFont('assets/fonts/digital-7.ttf');
   trophyred = loadImage('assets/redwins.jpg');
   trophyblue = loadImage('assets/bluewins.jpg');
@@ -64,6 +58,20 @@ function setup() {
   crowd = loadSound('assets/crowd.mp3');
   menumusic = loadSound('assets/menum.mp3');
   backw = loadSound('assets/backwalls.mp3');
+}
+
+function setup() {
+  createCanvas ((windowWidth), (windowHeight - 100));
+
+
+  menumusic.play();
+
+
+  for (var i = 0; i < 1; i++)
+  ball.push(new Ball()) ;
+
+
+
 
 
 
@@ -97,6 +105,7 @@ function draw() {
       imageMode(CENTER);
 
       image(playb, width/2, 3*(height/4), 100, 100);
+
 
 
 
