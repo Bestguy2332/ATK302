@@ -32,6 +32,10 @@ var field;
 var menu;
 var redp;
 var bluep;
+var playb;
+var crowd;
+var menumusic;
+var backw
 
 function setup() {
   createCanvas ((windowWidth), (windowHeight - 100));
@@ -41,20 +45,27 @@ function setup() {
   for (var i = 0; i < 1; i++)
   ball.push(new Ball()) ;
 
-  font1 = loadFont('assets/fonts/Press_Start_2P/PressStart2P-Regular.ttf');
+
+  font1 = loadFont('assets/fonts/digital-7.ttf');
   trophyred = loadImage('assets/redwins.jpg');
   trophyblue = loadImage('assets/bluewins.jpg');
-  bot = loadSound('assets/bottomwall.wav');
-  topw = loadSound('assets/topwall.wav');
-  leftp = loadSound('assets/leftpaddle.wav');
-  rightp = loadSound('assets/rightpaddle.wav');
-  score = loadSound('assets/score.wav');
-  win = loadSound('assets/win.wav');
+  bot = loadSound('assets/bottomwall.mp3');
+  topw = loadSound('assets/topwall.mp3');
+  leftp = loadSound('assets/leftpaddle.mp3');
+  rightp = loadSound('assets/rightpaddle.mp3');
+  score = loadSound('assets/score.mp3');
+  win = loadSound('assets/win.mp3');
   field = loadImage('assets/field.jpg');
   menu = loadImage('assets/menu.jpg');
   redp = loadImage('assets/redp.png');
   bluep = loadImage('assets/bluep.png');
   winb = loadImage('assets/win.jpg');
+  playb = loadImage('assets/play.png');
+  crowd = loadSound('assets/crowd.mp3');
+  menumusic = loadSound('assets/menum.mp3');
+  backw = loadSound('assets/backwalls.mp3');
+
+
 
   rectMode(CENTER);
   ellipseMode(CENTER);
@@ -71,16 +82,21 @@ function setup() {
   score1 = 0;
   score2 = 0;
 
-
 }
 
 function draw() {
 
+  textFont(font1);
+
+
   switch (myState) {
     case 1:
+
       imageMode(CORNER);
       background(menu);
       imageMode(CENTER);
+
+      image(playb, width/2, 3*(height/4), 100, 100);
 
 
 
@@ -257,8 +273,9 @@ function Ball() {
     this.vel.x = -5;
   }
   this.display = function() {
-      fill(255);
+      fill('black');
     ellipse(this.pos.x, this.pos.y, 10, 10);
+    fill(255);
 
   }
 
@@ -294,16 +311,20 @@ function Ball() {
        bot.play();
      }
      if ((this.pos.x <= 0) && (this.pos.y <= height/4)) {
-       this.vel.x = abs(this.vel.x)
+       this.vel.x = abs(this.vel.x);
+       backw.play();
      }
      if ((this.pos.x <= 0) && (this.pos.y >= 3*(height/4))) {
-       this.vel.x = abs(this.vel.x)
+       this.vel.x = abs(this.vel.x);
+       backw.play();
      }
      if ((this.pos.x >= width) && (this.pos.y <= height/4)) {
-       this.vel.x = -abs(this.vel.x)
+       this.vel.x = -abs(this.vel.x);
+       backw.play();
      }
      if ((this.pos.x >= width) && (this.pos.y >= 3*(height/4))) {
-       this.vel.x = -abs(this.vel.x)
+       this.vel.x = -abs(this.vel.x);
+       backw.play();
      }
 
   }
@@ -315,10 +336,11 @@ function Game() {
   imageMode(CENTER);
 
   noStroke();
-  fill('blue');
+  fill('red');
   textSize(50);
-  text(score1, width/4, height/2);
-  text(score2, (3*width/4), height/2);
+  text(score1, width/2 - 50, height-50);
+  fill('blue');
+  text(score2, width/2 + 50, height-50);
 
 
   for (var i = 0; i < ball.length; i++) {
@@ -378,6 +400,13 @@ function Game() {
     }
   }
 
+  rectMode(CORNER);
+  rect(0, 0, 10, height/4);
+  rect(0, 3*(height/4), 10, height/4);
+  rect(width-10, 0, 10, height/4);
+  rect(width-10, 3*(height/4), 10, height/4);
+  rectMode(CENTER);
+
   fill(255);
   image(redp, paddle2Pos.x, paddle2Pos.y, 50, 100);
   image(bluep, paddle1Pos.x, paddle1Pos.y, 50, 100);
@@ -404,12 +433,7 @@ function Game() {
 }
 
   checkForKeys();
-rectMode(CORNER);
-rect(0, 0, 5, height/4);
-rect(0, 3*(height/4), 5, height/4);
-rect(width-5, 0, 5, height/4);
-rect(width-5, 3*(height/4), 5, height/4);
-rectMode(CENTER);
+
 
 
 }
@@ -417,8 +441,11 @@ rectMode(CENTER);
 function mouseReleased() {
  switch (myState) {
    case 1:
-   if ((mouseX >=0) && (mouseY >=0) )
+   if ((mouseX >=0) && (mouseY >=0) ) {
+     menumusic.stop();
+     crowd.play();
      myState = 2
+   }
      break;
 
     case 3:
@@ -426,6 +453,7 @@ function mouseReleased() {
 resetTheGame();
     score1 = 0;
     score2 = 0;
+    menummusic.play();
     break;
 
     case 4:
@@ -433,6 +461,8 @@ resetTheGame();
     score1 = 0;
     score2 = 0;
 resetTheGame();
+  menumusic.play();
+  break;
  }
 }
 
@@ -450,6 +480,9 @@ function resetTheGame() {
   paddle4Pos.y = height/4;
   paddle6Pos.x = (width/2)+250;
   paddle6Pos.y = 3*(height/4);
+
+  crowd.stop();
+
 
 }
 
