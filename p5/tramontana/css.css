@@ -10,4 +10,5 @@ body {
 	background-color: blue;
 	background-image: url(assets/crowd.jpg);
 	background-repeat: no-repeat;
+	width: auto;
 }
